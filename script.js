@@ -14,7 +14,6 @@ function divide(a, b) {
     return a / b;
 }
 
-console.log(add(1, 2));
-console.log(subtract(2, 2));
-console.log(multiply(3, 2));
-console.log(divide(6, 2));
+let firstNumber = 0;
+let operator = '';
+let secondNumber = 0;
