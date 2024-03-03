@@ -1,3 +1,4 @@
+// Operations
 function add(a, b) {
     return a + b;
 }
@@ -14,6 +15,7 @@ function divide(a, b) {
     return Math.round(a / b) / 10;
 }
 
+// Operators reference 
 const operators = {
     '+': add,
     '-': subtract,
@@ -21,6 +23,7 @@ const operators = {
     '/': divide,
 };
 
+// Calling operations
 function operate(operator, numFirst, numSecond) {
     if (operator in operators) {
         return operators[operator](numFirst, numSecond);
@@ -32,8 +35,3 @@ function operate(operator, numFirst, numSecond) {
 let firstNumber = 0;
 let operator = '';
 let secondNumber = 0;
-
-console.log(operate('+', 2, 3));
-console.log(operate('-', 2, 3));
-console.log(operate('*', 2, 3));
-console.log(operate('/', 2, 3));
