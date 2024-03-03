@@ -19,6 +19,10 @@ function dividePercentage(a) {
     return a / 100;
 }
 
+function reverseSign(a) {
+    return -a;
+}
+
 // Operators reference 
 const operators = {
     '+': add,
@@ -26,13 +30,14 @@ const operators = {
     '*': multiply,
     '/': divide,
     '%': dividePercentage,
+    '+/-': reverseSign,
 };
 
 // Calling operations
 function operate(operator, numFirst, numSecond = null) {
     if (operator in operators) {
-        if (operator === '%') {
-            return operators['%'](numFirst);
+        if (operator === '%' || operator === '+/-') {
+            return operators[operator](numFirst);
         } else { 
             return operators[operator](numFirst, numSecond) 
         };
@@ -46,4 +51,13 @@ let operator = '';
 let secondNumber = 0;
 
 let currentPrompt = [];
+
+const displayDiv = document.querySelector('.display-row');
+
+function display(str) {
+    displayDiv.textContent = str;
+    currentPrompt.push(str);
+}
+
+const buttons = document.querySelectorAll('.btn-to-display');
 
