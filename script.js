@@ -46,18 +46,26 @@ function operate(operator, numFirst, numSecond = null) {
     }
 }
 
-let firstNumber = 0;
-let operator = '';
-let secondNumber = 0;
+let firstNumber = null;
+let operator = null;
+let secondNumber = null;
 
 let currentPrompt = [];
 
 const displayDiv = document.querySelector('.display-row');
 
 function display(str) {
-    displayDiv.textContent = str;
+    displayDiv.textContent += str;
     currentPrompt.push(str);
 }
 
-const buttons = document.querySelectorAll('.btn-to-display');
+// Numbers display logic
+const nmbButtons = document.querySelectorAll('.btn-nmb');
+
+nmbButtons.forEach(item => {
+    item.addEventListener('click', () => {
+        display(item.textContent);
+        console.log(currentPrompt);
+    });
+});
 
