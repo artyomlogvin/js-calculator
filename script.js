@@ -12,7 +12,10 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return Math.round(a / b) / 10;
+    let result = a / b;
+    if (!Number.isSafeInteger(result)) {
+        return result.toFixed(1);
+    } else return result;
 }
 
 function dividePercentage(a) {
@@ -114,4 +117,17 @@ binaryOperatorsBtns.forEach(item => {
     });
 });
 
+// Equality
+
+const equalsBtn = document.querySelector('.btn-equals');
+
+equalsBtn.addEventListener('click', () => {
+    secondNumber = Number(currentPrompt.join(''));
+    let result = operate(operator, firstNumber, secondNumber);
+    clearDisplay();
+    display(result);
+    firstNumber = null;
+    operator = null;
+    secondNumber = null;
+});
 
