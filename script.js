@@ -65,7 +65,15 @@ const nmbButtons = document.querySelectorAll('.btn-nmb');
 nmbButtons.forEach(item => {
     item.addEventListener('click', () => {
         display(item.textContent);
-        console.log(currentPrompt);
     });
 });
 
+// AC button logic
+const  acButton = document.querySelector('.btn-clear');
+
+function clearDisplay() {
+    displayDiv.textContent = '';
+    currentPrompt.splice(0);
+}
+
+acButton.addEventListener('click', () => clearDisplay());
