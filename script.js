@@ -122,6 +122,9 @@ binaryOperatorsBtns.forEach(item => {
 const equalsBtn = document.querySelector('.btn-equals');
 
 equalsBtn.addEventListener('click', () => {
+    if (firstNumber === null && secondNumber === null) {
+        return null;
+    }
     secondNumber = Number(currentPrompt.join(''));
     let result = operate(operator, firstNumber, secondNumber);
     clearDisplay();
