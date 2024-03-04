@@ -76,4 +76,42 @@ function clearDisplay() {
     currentPrompt.splice(0);
 }
 
-acButton.addEventListener('click', () => clearDisplay());
+acButton.addEventListener('click', () => {
+    clearDisplay();
+    firstNumber = null;
+    secondNumber = null;
+    operator = null;
+});
+
+// Operators buttons logic
+
+// Binary
+
+function calculateBinary(operatorName) {
+    if (firstNumber === null) {
+        firstNumber = Number(currentPrompt.join(''));
+        operator = operatorName;
+        clearDisplay();
+    } else {
+        secondNumber = Number(currentPrompt.join(''));
+        let result = operate(operator, firstNumber, secondNumber);
+        clearDisplay();
+        firstNumber = result;
+        operator = operatorName;
+        secondNumber = null;
+    }
+    // console.log(firstNumber);
+    // console.log(operator);
+    // console.log(secondNumber);
+    // console.log(currentPrompt);
+}
+
+const binaryOperatorsBtns = document.querySelectorAll('.btn-binary-op');
+
+binaryOperatorsBtns.forEach(item => {
+    item.addEventListener('click', () => {
+        calculateBinary(item.textContent);
+    });
+});
+
+
