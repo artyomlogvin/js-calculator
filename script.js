@@ -71,6 +71,13 @@ nmbButtons.forEach(item => {
     });
 });
 
+// Zero button logic
+const zeroBtn = document.querySelector('.btn-zero');
+
+zeroBtn.addEventListener('click', () => {
+    if (currentPrompt.length > 0) display('0');
+});
+
 // AC button logic
 const  acButton = document.querySelector('.btn-clear');
 
