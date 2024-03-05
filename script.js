@@ -1,18 +1,27 @@
 // Operations
 function add(a, b) {
-    return a + b;
+    const result = a + b;
+    if (!Number.isSafeInteger(result)) {
+        return result.toFixed(1);
+    } else return result;
 }
 
 function subtract(a, b) {
-    return a - b;
+    const result = a - b;
+    if (!Number.isSafeInteger(result)) {
+        return result.toFixed(1);
+    } else return result;
 }
 
 function multiply(a, b) {
-    return a * b;
+    const result = a * b;
+    if (!Number.isSafeInteger(result)) {
+        return result.toFixed(1);
+    } else return result;
 }
 
 function divide(a, b) {
-    let result = a / b;
+    const result = a / b;
     if (!Number.isSafeInteger(result)) {
         return result.toFixed(1);
     } else return result;
@@ -26,6 +35,17 @@ function reverseSign(a) {
     return -a;
 }
 
+function addFloatingPoint() {
+    if (!currentPrompt.join('').includes('.')) {
+        if (currentPrompt.length == 0) {
+            display('0');
+            display('.');
+        } else {
+            display('.');
+        }
+    }
+}
+
 // Operators reference 
 const operators = {
     '+': add,
@@ -34,6 +54,7 @@ const operators = {
     '/': divide,
     '%': dividePercentage,
     '+/-': reverseSign,
+    '.': addFloatingPoint,
 };
 
 // Calling operations
@@ -153,4 +174,12 @@ unaryOperatorsBtns.forEach(item => {
     item.addEventListener('click', () => {
         calculateUnary(item.textContent);
     });
+});
+
+// Float button logic
+
+const floatBtn = document.querySelector('.btn-float');
+
+floatBtn.addEventListener('click', () => {
+    addFloatingPoint();
 });
