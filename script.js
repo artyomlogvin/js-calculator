@@ -146,16 +146,15 @@ binaryOperatorsBtns.forEach(item => {
 const equalsBtn = document.querySelector('.btn-equals');
 
 equalsBtn.addEventListener('click', () => {
-    if (firstNumber === null && secondNumber === null) {
-        return null;
+    if (firstNumber !== null && currentPrompt.length > 0) {
+        secondNumber = Number(currentPrompt.join(''));
+        let result = operate(operator, firstNumber, secondNumber);
+        clearDisplay();
+        display(result);
+        firstNumber = null;
+        operator = null;
+        secondNumber = null;
     }
-    secondNumber = Number(currentPrompt.join(''));
-    let result = operate(operator, firstNumber, secondNumber);
-    clearDisplay();
-    display(result);
-    firstNumber = null;
-    operator = null;
-    secondNumber = null;
 });
 
 // Unary
