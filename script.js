@@ -110,10 +110,6 @@ function calculateBinary(operatorName) {
         operator = operatorName;
         secondNumber = null;
     }
-    // console.log(firstNumber);
-    // console.log(operator);
-    // console.log(secondNumber);
-    // console.log(currentPrompt);
 }
 
 const binaryOperatorsBtns = document.querySelectorAll('.btn-binary-op');
@@ -141,3 +137,20 @@ equalsBtn.addEventListener('click', () => {
     secondNumber = null;
 });
 
+// Unary
+function calculateUnary(operatorName) {
+    if (currentPrompt.length > 0) {
+        const prompt = Number(currentPrompt.join(''));
+        let result = operate(operatorName, prompt);
+        clearDisplay();
+        display(result);
+    }
+}
+
+const unaryOperatorsBtns = document.querySelectorAll('.btn-unary-op');
+
+unaryOperatorsBtns.forEach(item => {
+    item.addEventListener('click', () => {
+        calculateUnary(item.textContent);
+    });
+});
