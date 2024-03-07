@@ -218,3 +218,15 @@ const floatBtn = document.querySelector('.btn-float');
 floatBtn.addEventListener('click', () => {
     addFloatingPoint();
 });
+
+// CE button logic
+
+const ceBtn = document.querySelector('.btn-backspace');
+
+ceBtn.addEventListener('click', () => {
+    if (currentPrompt.length > 0) {
+        currentPrompt = currentPrompt.join('').split('');
+        currentPrompt.pop();
+        displayDiv.textContent = currentPrompt.join('');
+    }
+})
