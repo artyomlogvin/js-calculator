@@ -113,7 +113,7 @@ nmbButtons.forEach(item => {
 const zeroBtn = document.querySelector('.btn-zero');
 
 zeroBtn.addEventListener('click', () => {
-    if (currentPrompt.length > 0) display('0');
+    if (currentPrompt[0] != '0' || currentPrompt.includes('.')) display('0');
 });
 
 // AC button logic
