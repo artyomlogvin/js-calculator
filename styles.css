@@ -1,5 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.main-div {
+    margin-top: 100px;
+    width: 200px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 .display-row {
-    width: 125px;
-    height: 50px;
+    width: 100%;
+    height: 70px;
     background-color: gainsboro;
+}
+
+.row {
+    display: flex;
+}
+
+.row button {
+    width: 25%;
+}
+
+button {
+    font-size: 24px;
 }
