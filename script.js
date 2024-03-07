@@ -113,7 +113,12 @@ nmbButtons.forEach(item => {
 const zeroBtn = document.querySelector('.btn-zero');
 
 zeroBtn.addEventListener('click', () => {
-    if (currentPrompt[0] != '0' || currentPrompt.includes('.')) display('0');
+    if (currentPrompt[0] != '0' || currentPrompt.includes('.')) {
+        if (currentPrompt.length === 0) {
+            clearDisplay();
+        }
+        display('0');
+    }
 });
 
 // AC button logic
@@ -147,9 +152,15 @@ function calculateBinary(operatorName) {
         clearDisplay();
         display(result);
         clearPrompt();
-        firstNumber = result;
-        operator = operatorName;
-        secondNumber = null;
+        if (result != 'Can\'t divide by 0!') {
+            firstNumber = result;
+            operator = operatorName;
+            secondNumber = null; 
+        } else {
+            firstNumber = null;
+            operator = null;
+            secondNumber = null;
+        }
     }
 }
 
@@ -172,6 +183,9 @@ equalsBtn.addEventListener('click', () => {
         clearDisplay();
         clearPrompt();
         display(result);
+        if (result == 'Can\'t divide by 0!') {
+            clearPrompt();
+        }
         firstNumber = null;
         operator = null;
         secondNumber = null;
