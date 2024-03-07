@@ -2,33 +2,36 @@
 function add(a, b) {
     const result = a + b;
     if (!Number.isSafeInteger(result)) {
-        return result.toFixed(1);
+        return result.toFixed(3);
     } else return result;
 }
 
 function subtract(a, b) {
     const result = a - b;
     if (!Number.isSafeInteger(result)) {
-        return result.toFixed(1);
+        return result.toFixed(3);
     } else return result;
 }
 
 function multiply(a, b) {
     const result = a * b;
     if (!Number.isSafeInteger(result)) {
-        return result.toFixed(1);
+        return result.toFixed(3);
     } else return result;
 }
 
 function divide(a, b) {
     const result = a / b;
     if (!Number.isSafeInteger(result)) {
-        return result.toFixed(1);
+        return result.toFixed(3);
     } else return result;
 }
 
 function dividePercentage(a) {
-    return a / 100;
+    const result = a / 100;
+    if (!Number.isSafeInteger(result)) {
+        return result.toFixed(3);
+    } else return result;
 }
 
 function reverseSign(a) {
@@ -62,8 +65,11 @@ function operate(operator, numFirst, numSecond = null) {
     if (operator in operators) {
         if (operator === '%' || operator === '+/-') {
             return operators[operator](numFirst);
-        } else { 
-            return operators[operator](numFirst, numSecond) 
+        } else {
+            const result = operators[operator](numFirst, numSecond);
+            if (result == Infinity) {
+                return 'Can\'t divide by 0!';
+            } else return result;
         };
     } else {
         return 'No such operator!';
@@ -83,11 +89,22 @@ function display(str) {
     currentPrompt.push(str);
 }
 
+function clearPrompt() {
+    currentPrompt.splice(0);
+}
+
+function clearDisplay() {
+    displayDiv.textContent = '';
+}
+
 // Numbers display logic
 const nmbButtons = document.querySelectorAll('.btn-nmb');
 
 nmbButtons.forEach(item => {
     item.addEventListener('click', () => {
+        if (currentPrompt.length === 0) {
+            clearDisplay();
+        }
         display(item.textContent);
     });
 });
@@ -102,16 +119,16 @@ zeroBtn.addEventListener('click', () => {
 // AC button logic
 const  acButton = document.querySelector('.btn-clear');
 
-function clearDisplay() {
-    displayDiv.textContent = '';
-    currentPrompt.splice(0);
-}
-
-acButton.addEventListener('click', () => {
+function clearData() {
     clearDisplay();
+    clearPrompt();
     firstNumber = null;
     secondNumber = null;
     operator = null;
+}
+
+acButton.addEventListener('click', () => {
+    clearData();
 });
 
 // Operators buttons logic
@@ -123,10 +140,13 @@ function calculateBinary(operatorName) {
         firstNumber = Number(currentPrompt.join(''));
         operator = operatorName;
         clearDisplay();
+        clearPrompt();
     } else {
         secondNumber = Number(currentPrompt.join(''));
         let result = operate(operator, firstNumber, secondNumber);
         clearDisplay();
+        display(result);
+        clearPrompt();
         firstNumber = result;
         operator = operatorName;
         secondNumber = null;
@@ -150,6 +170,7 @@ equalsBtn.addEventListener('click', () => {
         secondNumber = Number(currentPrompt.join(''));
         let result = operate(operator, firstNumber, secondNumber);
         clearDisplay();
+        clearPrompt();
         display(result);
         firstNumber = null;
         operator = null;
@@ -163,6 +184,7 @@ function calculateUnary(operatorName) {
         const prompt = Number(currentPrompt.join(''));
         let result = operate(operatorName, prompt);
         clearDisplay();
+        clearPrompt();
         display(result);
     }
 }
