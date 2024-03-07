@@ -46,7 +46,8 @@ button {
 
 .btn-nmb,
 .btn-zero,
-.btn-float {
+.btn-float,
+.btn-reverse-sign {
     background-color: #92A8D1;
 }
 
