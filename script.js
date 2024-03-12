@@ -227,6 +227,9 @@ ceBtn.addEventListener('click', () => {
     if (currentPrompt.length > 0) {
         currentPrompt = currentPrompt.join('').split('');
         currentPrompt.pop();
+        if (currentPrompt.length === 1 && currentPrompt[0] == '-') {
+            currentPrompt.pop();
+        }
         displayDiv.textContent = currentPrompt.join('');
     }
 })
