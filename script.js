@@ -102,10 +102,12 @@ const nmbButtons = document.querySelectorAll('.btn-nmb');
 
 nmbButtons.forEach(item => {
     item.addEventListener('click', () => {
-        if (currentPrompt.length === 0) {
-            clearDisplay();
+        if (currentPrompt.length < 30) {
+            if (currentPrompt.length === 0) {
+                clearDisplay();
+            }
+            display(item.textContent);
         }
-        display(item.textContent);
     });
 });
 
@@ -113,11 +115,13 @@ nmbButtons.forEach(item => {
 const zeroBtn = document.querySelector('.btn-zero');
 
 zeroBtn.addEventListener('click', () => {
-    if (currentPrompt[0] != '0' || currentPrompt.includes('.')) {
-        if (currentPrompt.length === 0) {
-            clearDisplay();
+    if (currentPrompt.length < 30) {
+        if (currentPrompt[0] != '0' || currentPrompt.includes('.')) {
+            if (currentPrompt.length === 0) {
+                clearDisplay();
+            }
+            display('0');
         }
-        display('0');
     }
 });
 
@@ -216,7 +220,9 @@ unaryOperatorsBtns.forEach(item => {
 const floatBtn = document.querySelector('.btn-float');
 
 floatBtn.addEventListener('click', () => {
-    addFloatingPoint();
+    if (currentPrompt.length < 30) {
+        addFloatingPoint(); 
+    }
 });
 
 // CE button logic
