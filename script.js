@@ -103,10 +103,12 @@ const nmbButtons = document.querySelectorAll('.btn-nmb');
 nmbButtons.forEach(item => {
     item.addEventListener('click', () => {
         if (currentPrompt.length < 30) {
-            if (currentPrompt.length === 0) {
-                clearDisplay();
-            }
-            display(item.textContent);
+            if ((currentPrompt[0] == '0' && currentPrompt[1] == '.') || (currentPrompt[0] != 0)) {
+                if (currentPrompt.length === 0) {
+                    clearDisplay();
+                }
+                display(item.textContent);
+            } 
         }
     });
 });
