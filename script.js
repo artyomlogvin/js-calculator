@@ -248,11 +248,22 @@ numKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 document.addEventListener('keydown', (e) => {
     if (e.key == '0') {
         zeroBtn.click();
-    } else if (e.key in numKeys) {
+    } else if (e.key in numKeys || e.key == '9') {
         nmbButtons.forEach(item => {
             if (item.textContent == e.key) {
                 item.click();
             }
         });
+    } else if (e.key == '+' || e.key == '-' || e.key == '/' ||
+     e.key == '*') {
+        calculateBinary(e.key);
+    } else if (e.key == '%') {
+        calculateUnary(e.key);
+    } else if (e.key == '.') {
+        floatBtn.click();
+    } else if (e.key == '=') {
+        equalsBtn.click();
+    } else if (e.key == 'Backspace') {
+        ceBtn.click();
     }
 });
