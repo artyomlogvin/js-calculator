@@ -239,3 +239,18 @@ ceBtn.addEventListener('click', () => {
         displayDiv.textContent = currentPrompt.join('');
     }
 })
+
+// Keyboard logic
+numKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+document.addEventListener('keydown', (e) => {
+    if (e.key == '0') {
+        zeroBtn.click();
+    } else if (e.key in numKeys) {
+        nmbButtons.forEach(item => {
+            if (item.textContent == e.key) {
+                item.click();
+            }
+        });
+    }
+});
